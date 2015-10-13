@@ -1,7 +1,8 @@
+function creationCallback(notID) {
+console.log("Succesfully created " + notID + " notification");
+}
 
 function checkForConnection() {
-  // Google image search - 100 searches per day.
-  // https://developers.google.com/image-search/
   var testUrl = 'http://www.google.com';
 
   var xhr = new XMLHttpRequest();
@@ -10,6 +11,15 @@ xhr.onreadystatechange = function() {
       renderStatus("Checking for connection...");
     }else if (xhr.readyState == 4 && xhr.status == 200){
       renderStatus("Got connection!");
+      var opt = {
+  type: "basic",
+  title: "",
+  message: "Got Connection!",
+  iconUrl: "icon64.png"
+}
+      chrome.notifications.create('1', opt, creationCallback);
+
+
     }
     else if (xhr.readyState == 4 && xhr.status != 200){
       renderStatus("No connection :(");
