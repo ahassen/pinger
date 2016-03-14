@@ -13,8 +13,7 @@
       },
 
   "browser_action": {
-    "default_popup": "popup.html",
-    "default_title": "Click here to enable internet check!"
+    "default_title": "PingR!"
   },
   "icons": { "64": "icon64.png",
            "19": "icon19.png"},
