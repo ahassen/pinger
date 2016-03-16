@@ -1,9 +1,9 @@
 
-var state = 0; //variable to store the state of the Connection, 0 = no Connection; 1 = there is Connection
+var state = -1; //variable to store the state of the Connection, 0 = no Connection; 1 = there is Connection
 var testUrl = 'http://www.google.com';
 
 var xhr = new XMLHttpRequest();
-
+checkForConnection()
 window.setInterval(checkForConnection, 5000)
 
 function checkForConnection() {
@@ -32,7 +32,7 @@ xhr.onreadystatechange = function() {
 
 function stateChanged(newState) {
     var opt
-  if (newState == 1 && state == 0){
+  if (newState == 1 && (state == 0 || state == -1)){
       state = newState;//went from offline to online
      opt = {
         type: "basic",
@@ -40,7 +40,7 @@ function stateChanged(newState) {
         message: "Online!",
         iconUrl: "icon64.png"
       };
-  } else if (newState == 0 && state == 1){
+  } else if (newState == 0 && (state == 1 || state == -1)){
       state = newState;//went from online to offline
      opt = {
       type: "basic",
